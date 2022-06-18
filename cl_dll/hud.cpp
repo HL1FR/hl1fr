@@ -513,7 +513,7 @@ void CHud::VidInit()
 	m_AmmoSecondary.VidInit();
 	m_TextMessage.VidInit();
 	m_StatusIcons.VidInit();
-	m_Speedometer.Init();
+	m_Speedometer.VidInit();
 	GetClientVoiceMgr()->VidInit();
 }
 
