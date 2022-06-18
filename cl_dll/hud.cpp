@@ -369,6 +369,7 @@ void CHud::Init()
 	m_StatusIcons.Init();
 	m_Speedometer.Init();
 	m_StrafeGuide.Init();
+	m_Jumpspeed.Init();
 	GetClientVoiceMgr()->Init(&g_VoiceStatusHelper, (vgui::Panel**)&gViewPort);
 
 	m_Menu.Init();
@@ -516,6 +517,7 @@ void CHud::VidInit()
 	m_StatusIcons.VidInit();
 	m_Speedometer.VidInit();
 	m_StrafeGuide.VidInit();
+	m_Jumpspeed.VidInit();
 	GetClientVoiceMgr()->VidInit();
 }
 

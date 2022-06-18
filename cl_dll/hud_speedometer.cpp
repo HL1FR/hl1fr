@@ -1,3 +1,4 @@
+#pragma once
 #include <cmath>
 #include <cstring>
 
@@ -6,33 +7,32 @@
 #include "parsemsg.h"
 //#include "hudgl.h"
 
+#include "hud_speedometer.h"
+
 bool CHudSpeedometer::Init()
 {
 	m_iFlags = HUD_ACTIVE;
 
-	hud_speedometer				= CVAR_CREATE("hud_speedometer", "1", FCVAR_ARCHIVE);
-	hud_speedometer_nosuit		= CVAR_CREATE("hud_speedometer_nosuit", "1", FCVAR_ARCHIVE);
+	hud_speedometer = CVAR_CREATE("hud_speedometer", "1", FCVAR_ARCHIVE);
 	hud_speedometer_below_cross = CVAR_CREATE("hud_speedometer_below_cross", "0", FCVAR_ARCHIVE);
-	hud_speedometer_height		= CVAR_CREATE("hud_speedometer_height", "0", FCVAR_ARCHIVE);
+	hud_speedometer_height = CVAR_CREATE("hud_speedometer_height", "0", FCVAR_ARCHIVE);
 
 	gHUD.AddHudElem(this);
-	return true;
+	return 0;
 }
 
 bool CHudSpeedometer::VidInit()
 {
-	return true;
+	return 1;
 }
 
 bool CHudSpeedometer::Draw(float time)
 {
-	if (hud_speedometer_nosuit->value == 0.0f && !gHUD.HasSuit())
-		return 0;
-
 	if (hud_speedometer->value == 0.0f)
 		return 0;
 
 	int r, g, b;
+	//UnpackRGB(r, g, b, gHUD.m_iDefaultHUDColor);
 	UnpackRGB(r, g, b, RGB_YELLOWISH);
 
 	int y;
@@ -41,9 +41,9 @@ bool CHudSpeedometer::Draw(float time)
 	else if (hud_speedometer_height->value != 0.0f)
 		y = hud_speedometer_height->value;
 	else
-		y = ScreenHeight - gHUD.m_iFontHeight - gHUD.m_iFontHeight / 2 - gHUD.m_iFontHeight;
+		y = ScreenHeight - gHUD.m_iFontHeight - gHUD.m_iFontHeight / 2;
 
-	gHUD.DrawHudNumber(ScreenWidth / 2, y, speed, r, g, b);
+	gHUD.DrawHudNumberCentered(ScreenWidth / 2, y, speed, r, g, b);
 
 	return 0;
 }

@@ -1641,6 +1641,7 @@ void DLLEXPORT V_CalcRefdef(struct ref_params_s* pparams)
 
 	gHUD.m_Speedometer.UpdateSpeed(pparams->simvel);
 	gHUD.m_StrafeGuide.Update(pparams);
+	gHUD.m_Jumpspeed.UpdateSpeed(pparams->simvel);
 
 	/*
 // Example of how to overlay the whole screen with red at 50 % alpha

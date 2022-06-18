@@ -56,6 +56,7 @@ HL1_OBJS = \
 	$(HL1_OBJ_DIR)/health.o \
 	$(HL1_OBJ_DIR)/hud_speedometer.o \
 	$(HL1_OBJ_DIR)/hud_strafeguide.o \
+	$(HL1_OBJ_DIR)/hud_jumpspeed.o \
 	$(HL1_OBJ_DIR)/hud_msg.o \
 	$(HL1_OBJ_DIR)/hud_redraw.o \
 	$(HL1_OBJ_DIR)/hud_update.o \
