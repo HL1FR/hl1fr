@@ -91,6 +91,7 @@ struct HUDLIST
 #include "voice_status.h" // base voice handling class
 #include "hud_spectator.h"
 #include "hud_speedometer.h"
+#include "hud_strafeguide.h"
 
 
 //
@@ -509,6 +510,8 @@ public:
 	cvar_t* m_pCvarStealMouse;
 	cvar_t* m_pCvarDraw;
 
+	struct cvar_s* default_fov;
+
 	int m_iFontHeight;
 	int DrawHudNumber(int x, int y, int iFlags, int iNumber, int r, int g, int b);
 	int DrawHudNumber(int x, int y, int number, int r, int g, int b);
@@ -542,8 +545,6 @@ private:
 	Rect* m_rgrcRects;							  /*[HUD_SPRITE_COUNT]*/
 	char* m_rgszSpriteNames;					  /*[HUD_SPRITE_COUNT][MAX_SPRITE_NAME_LENGTH]*/
 
-	struct cvar_s* default_fov;
-
 public:
 	HSPRITE GetSprite(int index)
 	{
@@ -574,6 +575,7 @@ public:
 	CHudTextMessage m_TextMessage;
 	CHudStatusIcons m_StatusIcons;
 	CHudSpeedometer m_Speedometer;
+	CHudStrafeGuide m_StrafeGuide;
 
 	void Init();
 	void VidInit();
