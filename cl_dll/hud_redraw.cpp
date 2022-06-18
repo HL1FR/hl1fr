@@ -298,6 +298,37 @@ int CHud::DrawHudNumber(int x, int y, int iFlags, int iNumber, int r, int g, int
 	return x;
 }
 
+static constexpr int ten_powers[] = {
+	1,
+	10,
+	100,
+	1000,
+	10000,
+	100000,
+	1000000,
+	10000000,
+	100000000,
+	1000000000
+};
+
+int CHud::DrawHudNumber(int x, int y, int number, int r, int g, int b)
+{
+	auto digit_width = GetSpriteRect(m_HUD_number_0).right - GetSpriteRect(m_HUD_number_0).left;
+	auto digit_count = count_digits(number);
+
+	for (int i = digit_count; i > 0; --i)
+	{
+		int digit = number / ten_powers[i - 1];
+
+		SPR_Set(GetSprite(m_HUD_number_0 + digit), r, g, b);
+		SPR_DrawAdditive(0, x, y, &GetSpriteRect(m_HUD_number_0 + digit));
+		x += digit_width;
+
+		number -= digit * ten_powers[i - 1];
+	}
+
+	return x;
+}
 
 int CHud::GetNumWidth(int iNumber, int iFlags)
 {
