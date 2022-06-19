@@ -130,7 +130,7 @@ bool COverchargeKit::MyTouch(CBasePlayer* pPlayer)
 		return false;
 	}
 
-	pPlayer->OverchargeHealth(1899.0f, DMG_GENERIC);
+	pPlayer->OverchargeHealth(1900.0f, DMG_GENERIC);
 	EMIT_SOUND(ENT(pPlayer->pev), CHAN_ITEM, "items/smallmedkit1.wav", 1, ATTN_NORM);
 
 	if (0 != g_pGameRules->ItemShouldRespawn(this))
