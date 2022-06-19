@@ -280,6 +280,13 @@ bool CBasePlayer::TakeHealth(float flHealth, int bitsDamageType)
 	return CBaseMonster::TakeHealth(flHealth, bitsDamageType);
 }
 
+// give health
+bool CBasePlayer::OverchargeHealth(float flHealth, int bitsDamageType)
+{
+	pev->health += flHealth;
+	return true;
+}
+
 Vector CBasePlayer::GetGunPosition()
 {
 	//	UTIL_MakeVectors(pev->v_angle);

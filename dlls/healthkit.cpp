@@ -95,6 +95,58 @@ bool CHealthKit::MyTouch(CBasePlayer* pPlayer)
 }
 
 
+class COverchargeKit : public CItem
+{
+	void Spawn() override;
+	void Precache() override;
+	bool MyTouch(CBasePlayer* pPlayer) override;
+
+	/*
+	int		Save( CSave &save ) override; 
+	int		Restore( CRestore &restore ) override;
+	
+	static	TYPEDESCRIPTION m_SaveData[];
+*/
+};
+
+void COverchargeKit::Spawn()
+{
+	Precache();
+	SET_MODEL(ENT(pev), "models/w_medkit.mdl");
+
+	CItem::Spawn();
+}
+
+void COverchargeKit::Precache()
+{
+	PRECACHE_MODEL("models/w_medkit.mdl");
+	PRECACHE_SOUND("items/smallmedkit1.wav");
+}
+
+bool COverchargeKit::MyTouch(CBasePlayer* pPlayer)
+{
+	if (pPlayer->pev->deadflag != DEAD_NO)
+	{
+		return false;
+	}
+
+	pPlayer->OverchargeHealth(899.0f, DMG_GENERIC);
+	EMIT_SOUND(ENT(pPlayer->pev), CHAN_ITEM, "items/smallmedkit1.wav", 1, ATTN_NORM);
+
+	if (0 != g_pGameRules->ItemShouldRespawn(this))
+	{
+		Respawn();
+	}
+	else
+	{
+		UTIL_Remove(this);
+	}
+
+	return true;
+}
+
+LINK_ENTITY_TO_CLASS(item_overchargekit, COverchargeKit);
+
 
 //-------------------------------------------------------------
 // Wall mounted health kit
